@@ -1,0 +1,61 @@
+//   ---FIND NUMBER OF ROATAION IN SORTED ARRAY------------
+ 
+//  solution
+
+// using BINARY SEARCH-----
+
+// NUMBER OF ROTATION = INDEX OF MINIMUM ELEMENT--
+
+
+
+#include <iostream>
+
+using namespace std;
+
+  int countRotations(int n, int arr[])
+{
+     
+     int s = 0;
+     int e = n-1;
+     
+     while(s<=e){
+         
+         int mid = ( s + e-s)/2;
+         
+        //  next ELEMENT
+        int next = (mid+1) % n;
+        
+        // previous ELEMENT
+        
+        int prev = (mid-1 + n) % n;
+        
+        if(arr[mid] <= arr[next] && arr[mid] <= arr[prev])
+            return  mid;
+        
+        
+        if(arr[mid] <= arr[e])
+            e = mid - 1;
+        
+        
+        if(arr[mid] >= arr[s])
+            s = mid+1;
+        
+     }
+        return 0;
+     
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0; i<=n-1; i++){
+        cin>>arr[i];
+    }
+    cout << countRotations(n, arr);
+
+    
+    return 0;
+}
+     
